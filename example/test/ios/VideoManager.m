@@ -6,7 +6,7 @@
 //  Copyright © 2016 Facebook. All rights reserved.
 //
 
-#import "VideoManager.h"
+#import "VrVideoManager.h"
 
 #import "VideoView.h"
 #import <UIKit/UIKit.h>

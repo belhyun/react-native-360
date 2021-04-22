@@ -1,6 +1,6 @@
 /*
- * @Author: tiero 
- * @Date: 2017-01-05 17:39:15 
+ * @Author: tiero
+ * @Date: 2017-01-05 17:39:15
  * @Last Modified by: tiero
  * @Last Modified time: 2017-01-05 17:40:04
  */
@@ -30,5 +30,5 @@ VideoView.propTypes = {
 }
 
 // requireNativeComponent automatically resolves this to "VideoManager"
-var RCTViedoView = requireNativeComponent('Video', VideoView);
+var RCTViedoView = requireNativeComponent('VrVideo', VideoView);
 export default VideoView;

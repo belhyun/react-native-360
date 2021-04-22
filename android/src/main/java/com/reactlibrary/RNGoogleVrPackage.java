@@ -16,10 +16,10 @@ public class RNGoogleVrPackage implements ReactPackage {
       return Arrays.<NativeModule>asList(new RNGoogleVrModule(reactContext));
     }
 
-    @Override
-    public List<Class<? extends JavaScriptModule>> createJSModules() {
-      return Collections.emptyList();
-    }
+//     @Override
+//     public List<Class<? extends JavaScriptModule>> createJSModules() {
+//       return Collections.emptyList();
+//     }
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
