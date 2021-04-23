@@ -24,6 +24,7 @@ RCT_ENUM_CONVERTER(GVRWidgetDisplayMode, (@{
 
 @implementation VideoView {
   BOOL _isPaused;
+  BOOL _isRepeat;
   GVRVideoView *_videoView;
   GVRVideoType __videoType;
 }
@@ -36,7 +37,7 @@ RCT_ENUM_CONVERTER(GVRWidgetDisplayMode, (@{
   _videoView.delegate = self;
   _isPaused = YES;
   [self addSubview:_videoView];
-  
+
   return self;
 }
 
@@ -58,20 +59,20 @@ RCT_ENUM_CONVERTER(GVRWidgetDisplayMode, (@{
   NSString *uri = [video objectForKey:@"uri"];
   NSURL *url = [NSURL URLWithString:uri];
   NSString *strType = [video objectForKey:@"type"];
-  
+
   GVRVideoType videoType = kGVRVideoTypeMono;
   if ([strType isEqualToString:@"stereo"]) {
     videoType = kGVRVideoTypeStereoOverUnder;
   }
-  
+
   //play from remote url
   if ( [[uri lowercaseString] hasPrefix:@"https://"] ) {
-    
+
     [_videoView loadFromUrl:url ofType:videoType];
-    
+
   }else{ // play from local
     //Local asset: Can be in the bundle or the uri can be an absolute path of a stored video in the application
-    
+
     //Check whether the file loaded from the Bundle,
     NSString *localPath = [[NSBundle mainBundle] pathForResource:uri ofType:@"mp4"];
     if (localPath) {
@@ -83,7 +84,7 @@ RCT_ENUM_CONVERTER(GVRWidgetDisplayMode, (@{
     //                   ofType:videoType];
     [_videoView loadFromUrl:url ofType:videoType];
   }
-  
+
   [_videoView pause];
 }
 
@@ -119,6 +120,36 @@ RCT_ENUM_CONVERTER(GVRWidgetDisplayMode, (@{
   _videoView.enableCardboardButton = enableCardboardButton;
 }
 
+-(void)setPlay:(BOOL)play
+{
+  if (play) {
+    [_videoView play];
+  } else {
+    [_videoView pause];
+  }
+  _isPaused = !play;
+}
+
+-(void)setPause:(BOOL)pause
+{
+  if (pause) {
+    [_videoView pause];
+  } else {
+    [_videoView play];
+  }
+  _isPaused = pause;
+}
+
+-(void)setRepeat:(BOOL)repeat
+{
+  _isRepeat = repeat;
+}
+
+-(void)setSeek:(float)seek
+{
+  [_videoView seekTo:seek];
+}
+
 
 #pragma mark - GVRVideoViewDelegate
 
@@ -145,7 +176,7 @@ didFailToLoadContent:(id)content
 
 - (void)videoView:(GVRVideoView*)videoView didUpdatePosition:(NSTimeInterval)position {
   // Loop the video when it reaches the end.
-  if (position == videoView.duration) {
+  if (position == videoView.duration && _isRepeat) {
     [_videoView seekTo:0];
     [_videoView play];
   }

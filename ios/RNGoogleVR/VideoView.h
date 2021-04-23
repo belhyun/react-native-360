@@ -21,5 +21,9 @@
 @property (nonatomic, assign) BOOL enableInfoButton;
 @property (nonatomic, assign) BOOL hidesTransitionView;
 @property (nonatomic, assign) BOOL enableTouchTracking;
+@property (nonatomic, assign) BOOL play;
+@property (nonatomic, assign) BOOL pause;
+@property (nonatomic, assign) BOOL repeat;
+@property (nonatomic, assign) float seek;
 
 @end
