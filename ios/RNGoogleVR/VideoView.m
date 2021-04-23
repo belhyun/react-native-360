@@ -119,6 +119,18 @@ RCT_ENUM_CONVERTER(GVRWidgetDisplayMode, (@{
   _videoView.enableCardboardButton = enableCardboardButton;
 }
 
+-(void)setPlay:(BOOL)play
+{
+  _isPaused = false;
+  [_videoView play];
+}
+
+-(void)setPause:(BOOL)pause
+{
+  _isPaused = true;
+  [_videoView pause];
+}
+
 
 #pragma mark - GVRVideoViewDelegate
 
