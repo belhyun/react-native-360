@@ -1,5 +1,5 @@
 
-package com.reactlibrary;
+package com.video.round;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
