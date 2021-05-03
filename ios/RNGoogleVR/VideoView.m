@@ -164,6 +164,7 @@ RCT_ENUM_CONVERTER(GVRWidgetDisplayMode, (@{
 
 - (void)widgetView:(GVRWidgetView *)widgetView didLoadContent:(id)content {
   RCTLogInfo(@"Finished loading video");
+  self.onVideoLoad(@{});
   [_videoView play];
   _isPaused = NO;
 }

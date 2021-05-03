@@ -30,7 +30,8 @@ VideoView.propTypes = {
     play: PropTypes.bool,
     pause: PropTypes.bool,
     repeat: PropTypes.bool,
-    seek: PropTypes.number
+    seek: PropTypes.number,
+    onVideoLoad: PropTypes.func
 }
 
 // requireNativeComponent automatically resolves this to "VideoManager"

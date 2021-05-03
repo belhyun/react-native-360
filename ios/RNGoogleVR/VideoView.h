@@ -25,5 +25,6 @@
 @property (nonatomic, assign) BOOL pause;
 @property (nonatomic, assign) BOOL repeat;
 @property (nonatomic, assign) float seek;
+@property (nonatomic, copy) RCTDirectEventBlock onVideoLoad;
 
 @end
